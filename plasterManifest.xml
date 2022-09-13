@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest
+  schemaVersion="1.1"
+  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>PoSHModuleSimple</name>
+    <id>f6bb1eb8-d4dc-4224-ae73-b4c0ffd69bbf</id>
+    <version>0.0.1</version>
+    <title>O'Ryan's PowerShell Module Template</title>
+    <description></description>
+    <author>O'Ryan Hedrick</author>
+    <tags></tags>
+  </metadata>
+  <parameters>
+    <parameter 
+      name="ModuleName"
+      type="text"
+      prompt="Enter the name of the module" />
+    <parameter
+      name="ModuleVersion"
+      type="text"
+      prompt="Enter the version of the module"
+      default="0.1.0" />
+    <parameter
+      name="Author"
+      type="user-fullname"
+      prompt="Enter the author of the module" />
+    <parameter
+      name="Description"
+      type="text"
+      prompt="Enter a description of the module" />
+  </parameters>
+  <content>
+    <newModuleManifest
+      destination='src\${PLASTER_PARAM_ModuleName}.psd1'
+      moduleVersion='${PLASTER_PARAM_ModuleVersion}'
+      rootModule='${PLASTER_PARAM_ModuleName}.psm1'
+      author="${PLASTER_PARAM_Author}"
+      description="${PLASTER_PARAM_Description}" />
+  <templateFile
+    source='UnitTests.tests.ps1'
+    destination='tests/UnitTests.tests.ps1' />
+  <file
+    source='rootModule.psm1'
+    destination='src/${PLASTER_PARAM_ModuleName}.psm1' />
+  <file
+    source=''
+    destination='dst/' />
+  <file
+    source='build.ps1'
+    destination='build.ps1' />
+  <message>
+    Source code is under the src folder, tests are under the tests folder, and builds ready for distribution should be placed under the dst folder.
+  </message>
+  </content>
+</plasterManifest>
